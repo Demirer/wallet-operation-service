@@ -1,13 +1,12 @@
 package com.example.wallet_operation_service.entity;
 
 import lombok.Data;
-
 import javax.persistence.*;
 import java.util.List;
 
 @Data
 @Entity
-@Table(name = "CUSTOMER_ACCOUNT")
+@Table(name = "WALLET")
 public class Wallet {
 
     @Id
