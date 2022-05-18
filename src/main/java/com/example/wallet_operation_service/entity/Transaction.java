@@ -1,6 +1,6 @@
 package com.example.wallet_operation_service.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +10,9 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "WALLET_TRANSACTION")
 public class Transaction {
 
@@ -18,14 +21,14 @@ public class Transaction {
     private Long transactionId;
 
     @Column(name = "CUSTOMER_ID")
-    private String customerId;
+    private Long customerId;
 
     @Column(name = "TRANSACTION_TYPE")
     private String transactionType;
 
     @Column(name = "TRANSACTION_AMOUNT")
-    private Double balance;
+    private Double transactionAmount;
 
     @Column(name = "TRANSACTION_DATE")
-    private LocalDateTime localDateTime;
+    private LocalDateTime transactionDateTime;
 }
