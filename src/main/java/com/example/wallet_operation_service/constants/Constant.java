@@ -11,5 +11,13 @@ public class Constant {
 
     private static final String CONSTANT_CONSTRUCTOR_ACCESS_ERROR = "Constant.java cannot be accessed with constructor";
 
+    public static final String MESSAGE_RESOURCE_FILE_NAME = "WalletServiceMessage.properties";
+
     public static final int SUCCESS = 0;
+
+    public static final int FAILURE = -1;
+
+    public static final String CREDIT_OPERATION = "Credit Operation";
+
+    public static final String WITHDRAWAL_OPERATION = "Withdrawal Operation";
 }

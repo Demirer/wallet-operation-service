@@ -8,6 +8,4 @@ import lombok.Data;
 public class TransactionResponse {
 
     private Long transactionId;
-
-    private String message;
 }

@@ -9,5 +9,7 @@ public class WalletOperationServiceResponse<T> {
 
     private T responseData;
 
+    private String message;
+
     private int responseCode;
 }

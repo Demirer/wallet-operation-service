@@ -1,16 +1,16 @@
 package com.example.wallet_operation_service.service;
 
+import com.example.wallet_operation_service.constants.Constant;
 import com.example.wallet_operation_service.entity.Transaction;
 import com.example.wallet_operation_service.entity.TransactionRepository;
 import com.example.wallet_operation_service.entity.Wallet;
 import com.example.wallet_operation_service.entity.WalletRepository;
-import com.example.wallet_operation_service.exception_handler.WalletServiceValidationException;
+import com.example.wallet_operation_service.exception_handler.MessageKey;
 import com.example.wallet_operation_service.model.request.TransactionRequest;
 import com.example.wallet_operation_service.model.response.TransactionResponse;
+import com.example.wallet_operation_service.model.response.WalletDetailResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -23,48 +23,27 @@ public class WalletOperationService implements WalletOperation {
     private final TransactionRepository transactionRepository;
 
     @Override
-    public Wallet getCustomerWalletDetails(Long customerId) {
-        Optional<Wallet> walletDetails = walletRepository.findById(customerId);
-        if (walletDetails.isPresent()) {
-            return walletDetails.get();
-        } else {
-            throw new WalletServiceValidationException("CUSTOMER NOT EXIST");
-        }
+    public WalletDetailResponse walletDetails(Long customerId) {
+        WalletDetailResponse walletDetailResponse = new WalletDetailResponse();
+        walletRepository.findById(customerId).ifPresent(walletDetailResponse::setWallet);
+        return walletDetailResponse;
     }
 
     @Override
-    public TransactionResponse debitTransaction(TransactionRequest transactionRequest) {
-        if(transactionRepository.existsById(transactionRequest.getTransactionId())){
-            throw new WalletServiceValidationException("TRANSACTION ID MUST BE UNIQUE");
-        }
-        if(!checkFundsAreSufficient(transactionRequest.getCustomerId(),transactionRequest.getWalletOperationAmount())){
-            throw new WalletServiceValidationException("INSUFFICIENT FUNDS");
-        }
-        saveTransaction(transactionRequest,"DEBIT");
+    public TransactionResponse withdrawalTransaction(TransactionRequest transactionRequest) {
+        processTransaction(transactionRequest, Constant.WITHDRAWAL_OPERATION);
         walletRepository.updateBalance(-transactionRequest.getWalletOperationAmount(),transactionRequest.getCustomerId());
-        return new TransactionResponse(transactionRequest.getTransactionId(),"Successfully REMOVED DEBIT");
+        return new TransactionResponse(transactionRequest.getTransactionId());
     }
 
     @Override
     public TransactionResponse creditTransaction(TransactionRequest transactionRequest) {
-        if(transactionRepository.existsById(transactionRequest.getTransactionId())){
-            throw new WalletServiceValidationException("TRANSACTION ID MUST BE UNIQUE");
-        }
-        saveTransaction(transactionRequest,"CREDIT");
+        processTransaction(transactionRequest,Constant.CREDIT_OPERATION);
         walletRepository.updateBalance(transactionRequest.getWalletOperationAmount(),transactionRequest.getCustomerId());
-        return new TransactionResponse(transactionRequest.getTransactionId(),"Successfully added credit");
+        return new TransactionResponse(transactionRequest.getTransactionId());
     }
 
-    private boolean checkFundsAreSufficient(Long customerId, Double requestAmountToDebit){
-        Optional<Wallet> wallet = walletRepository.findById(customerId);
-        if (wallet.isPresent()){
-            return wallet.get().getBalance()>=requestAmountToDebit;
-        }else {
-            throw new WalletServiceValidationException("Customer not exist");
-        }
-    }
-
-    private void saveTransaction(TransactionRequest transactionRequest,String operation){
+    private void processTransaction(TransactionRequest transactionRequest, String operation) {
         Transaction transaction = Transaction.builder()
                 .transactionId(transactionRequest.getTransactionId())
                 .customerId(transactionRequest.getCustomerId())
