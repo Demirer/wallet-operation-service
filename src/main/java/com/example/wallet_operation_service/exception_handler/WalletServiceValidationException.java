@@ -1,8 +1,6 @@
 package com.example.wallet_operation_service.exception_handler;
 
-import java.io.Serializable;
-
-public class WalletServiceValidationException extends RuntimeException implements Serializable {
+public class WalletServiceValidationException extends RuntimeException {
 
     public WalletServiceValidationException(String exceptionKey) {
         super(exceptionKey);

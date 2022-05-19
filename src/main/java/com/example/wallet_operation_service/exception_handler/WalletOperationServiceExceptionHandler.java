@@ -31,7 +31,7 @@ public class WalletOperationServiceExceptionHandler {
         return new ResponseEntity<>(new WalletOperationServiceResponse<>(Constant.OPERATION_FAILED,exceptionMessage,Constant.FAILURE),HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = InternalSystemException.class)
+    @ExceptionHandler(value = RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<String> unexpectedInternalTechnicalError(Exception exception){
 
