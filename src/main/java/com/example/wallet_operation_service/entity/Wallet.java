@@ -23,6 +23,7 @@ public class Wallet {
     private Double balance;
 
     @Column(name = "TRANSACTION_HISTORY")
+    @OrderBy("transactionDateTime")
     @OneToMany(mappedBy = "customerId",fetch = FetchType.EAGER)
     private List<Transaction> transactionHistory;
 }
