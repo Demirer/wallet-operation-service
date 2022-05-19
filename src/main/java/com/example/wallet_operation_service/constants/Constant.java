@@ -20,4 +20,6 @@ public class Constant {
     public static final String CREDIT_OPERATION = "Credit Operation";
 
     public static final String WITHDRAWAL_OPERATION = "Withdrawal Operation";
+
+    public static final String OPERATION_FAILED = "Operation failed.";
 }

@@ -28,11 +28,11 @@ public class ValidationLayer {
         final TransactionRequest debitOperationRequest = (TransactionRequest) getArguments(joinPoint);
 
         if (!walletRepository.existsById(debitOperationRequest.getCustomerId()))
-            throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST, debitOperationRequest);
+            throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST);
         if (transactionRepository.existsById(debitOperationRequest.getTransactionId()))
-            throw new WalletServiceValidationException(MessageKey.TRANSACTION_ID_UNIQUENESS, debitOperationRequest);
+            throw new WalletServiceValidationException(MessageKey.TRANSACTION_ID_UNIQUENESS);
         if (!checkIfFundsAreSufficient(debitOperationRequest.getCustomerId(), debitOperationRequest.getWalletOperationAmount()))
-            throw new WalletServiceValidationException(MessageKey.INSUFFICIENT_FUNDS, debitOperationRequest);
+            throw new WalletServiceValidationException(MessageKey.INSUFFICIENT_FUNDS);
 
         return joinPoint.proceed();
     }
@@ -42,9 +42,9 @@ public class ValidationLayer {
         final TransactionRequest creditOperationRequest = (TransactionRequest) getArguments(joinPoint);
 
         if (!walletRepository.existsById(creditOperationRequest.getCustomerId()))
-            throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST, creditOperationRequest);
+            throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST);
         if (transactionRepository.existsById(creditOperationRequest.getTransactionId()))
-            throw new WalletServiceValidationException(MessageKey.TRANSACTION_ID_UNIQUENESS,creditOperationRequest);
+            throw new WalletServiceValidationException(MessageKey.TRANSACTION_ID_UNIQUENESS);
 
         return joinPoint.proceed();
     }
@@ -54,7 +54,7 @@ public class ValidationLayer {
         final Long customerId = (Long) getArguments(joinPoint);
 
         if (!walletRepository.existsById(customerId))
-            throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST, customerId);
+            throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST);
 
         return joinPoint.proceed();
     }
