@@ -1,8 +1,5 @@
 package com.example.wallet_operation_service.constants;
 
-import com.example.wallet_operation_service.controller.WalletController;
-import com.example.wallet_operation_service.service.WalletOperationService;
-
 /**
  * Default Constant class for fulfill best practices in Java. We control all constants in this class.
  */
@@ -14,7 +11,7 @@ public class Constant {
 
     private static final String CONSTANT_CONSTRUCTOR_ACCESS_ERROR = "Constant.java cannot be accessed with constructor";
 
-    public static final String MESSAGE_RESOURCE_FILE_NAME = "WalletServiceMessage.properties";
+    public static final String MESSAGE_RESOURCE_FILE_NAME = "WalletServiceMessage";
 
     public static final int SUCCESS = 0;
 
