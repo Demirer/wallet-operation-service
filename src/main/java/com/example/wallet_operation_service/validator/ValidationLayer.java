@@ -24,14 +24,14 @@ public class ValidationLayer {
     private final TransactionRepository transactionRepository;
 
     @Around("@annotation(WithdrawalOperationValidation)")
-    public Object debitOperationValidation(ProceedingJoinPoint joinPoint) throws Throwable {
-        final TransactionRequest debitOperationRequest = (TransactionRequest) getArguments(joinPoint);
+    public Object withdrawalOperationValidation(ProceedingJoinPoint joinPoint) throws Throwable {
+        final TransactionRequest withdrawalOperationRequest = (TransactionRequest) getArguments(joinPoint);
 
-        if (!walletRepository.existsById(debitOperationRequest.getCustomerId()))
+        if (!walletRepository.existsById(withdrawalOperationRequest.getCustomerId()))
             throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST);
-        if (transactionRepository.existsById(debitOperationRequest.getTransactionId()))
+        if (transactionRepository.existsById(withdrawalOperationRequest.getTransactionId()))
             throw new WalletServiceValidationException(MessageKey.TRANSACTION_ID_UNIQUENESS);
-        if (!checkIfFundsAreSufficient(debitOperationRequest.getCustomerId(), debitOperationRequest.getWalletOperationAmount()))
+        if (!checkIfFundsAreSufficient(withdrawalOperationRequest.getCustomerId(), withdrawalOperationRequest.getWalletOperationAmount()))
             throw new WalletServiceValidationException(MessageKey.INSUFFICIENT_FUNDS);
 
         return joinPoint.proceed();
@@ -59,9 +59,9 @@ public class ValidationLayer {
         return joinPoint.proceed();
     }
 
-    private boolean checkIfFundsAreSufficient(Long customerId, Double requestAmountToDebit) {
+    private boolean checkIfFundsAreSufficient(Long customerId, Double requestAmountToWithdrawal) {
         Optional<Wallet> wallet = walletRepository.findById(customerId);
-        return wallet.filter(value -> value.getBalance() >= requestAmountToDebit).isPresent();
+        return wallet.filter(value -> value.getBalance() >= requestAmountToWithdrawal).isPresent();
     }
 
     private Object getArguments(ProceedingJoinPoint joinPoint) {

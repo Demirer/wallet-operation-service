@@ -14,7 +14,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -32,7 +31,7 @@ public class WalletController {
     }
 
     @WithdrawalOperationValidation
-    @PostMapping(value = "/debit", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/withdrawal", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<WalletOperationServiceResponse<TransactionResponse>> withdrawalOperation(@RequestBody @Valid @NotNull TransactionRequest transactionRequest) {
         return ResponseEntity.ok(new WalletOperationServiceResponse<>(walletOperationService.withdrawalTransaction(transactionRequest), MessageKey.messageExtractor(MessageKey.WITHDRAWAL_SUCCESS_MESSAGE), Constant.SUCCESS));
     }
