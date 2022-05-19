@@ -1,18 +1,24 @@
 package com.example.wallet_operation_service.exception_handler;
 
+import com.example.wallet_operation_service.model.request.TransactionRequest;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
+
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class WalletServiceValidationException extends RuntimeException {
+public class WalletServiceValidationException extends RuntimeException implements Serializable {
 
-    private Long transactionId;
+    private static final long serialVersionUID = 1L;
+
+    private TransactionRequest transactionRequest;
 
     private Long customerId;
 
-    public WalletServiceValidationException(String exceptionKey,Long transactionId,Long customerId) {
+    public WalletServiceValidationException(String exceptionKey,TransactionRequest transactionRequest) {
         super(exceptionKey);
-        this.transactionId = transactionId;
-        this.customerId = customerId;
+        this.transactionRequest = transactionRequest;
     }
 
     public WalletServiceValidationException(String exceptionKey,Long customerId) {
@@ -23,5 +29,4 @@ public class WalletServiceValidationException extends RuntimeException {
     public WalletServiceValidationException(String exceptionKey) {
         super(exceptionKey);
     }
-
 }

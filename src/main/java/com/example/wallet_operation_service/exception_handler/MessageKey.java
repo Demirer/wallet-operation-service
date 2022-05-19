@@ -13,6 +13,10 @@ public class MessageKey {
 
     private static final String EXCEPTION_MESSAGE_KEY_ACCESS_ERROR = "MessageKey.java cannot be accessed with constructor";
 
+    public static final String REQUEST_BLOCKED = "exception.request_blocked";
+
+    public static final String CIRCUIT_BREAKER = "exception.circuit_breaker";
+
     public static final String UNEXPECTED_TECHNICAL_ERROR = "exception.unexpected_technical_exception";
 
     public static final String CUSTOMER_NOT_EXIST = "validation.customer_not_exist";

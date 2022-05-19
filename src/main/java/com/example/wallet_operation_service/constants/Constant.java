@@ -1,5 +1,8 @@
 package com.example.wallet_operation_service.constants;
 
+import com.example.wallet_operation_service.controller.WalletController;
+import com.example.wallet_operation_service.service.WalletOperationService;
+
 /**
  * Default Constant class for fulfill best practices in Java. We control all constants in this class.
  */

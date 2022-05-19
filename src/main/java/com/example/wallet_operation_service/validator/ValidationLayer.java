@@ -28,11 +28,11 @@ public class ValidationLayer {
         final TransactionRequest debitOperationRequest = (TransactionRequest) getArguments(joinPoint);
 
         if (!walletRepository.existsById(debitOperationRequest.getCustomerId()))
-            throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST, debitOperationRequest.getTransactionId(), debitOperationRequest.getCustomerId());
+            throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST, debitOperationRequest);
         if (transactionRepository.existsById(debitOperationRequest.getTransactionId()))
-            throw new WalletServiceValidationException(MessageKey.TRANSACTION_ID_UNIQUENESS, debitOperationRequest.getTransactionId(), debitOperationRequest.getCustomerId());
+            throw new WalletServiceValidationException(MessageKey.TRANSACTION_ID_UNIQUENESS, debitOperationRequest);
         if (!checkIfFundsAreSufficient(debitOperationRequest.getCustomerId(), debitOperationRequest.getWalletOperationAmount()))
-            throw new WalletServiceValidationException(MessageKey.INSUFFICIENT_FUNDS, debitOperationRequest.getTransactionId(), debitOperationRequest.getCustomerId());
+            throw new WalletServiceValidationException(MessageKey.INSUFFICIENT_FUNDS, debitOperationRequest);
 
         return joinPoint.proceed();
     }
@@ -42,9 +42,9 @@ public class ValidationLayer {
         final TransactionRequest creditOperationRequest = (TransactionRequest) getArguments(joinPoint);
 
         if (!walletRepository.existsById(creditOperationRequest.getCustomerId()))
-            throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST, creditOperationRequest.getTransactionId(), creditOperationRequest.getCustomerId());
+            throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST, creditOperationRequest);
         if (transactionRepository.existsById(creditOperationRequest.getTransactionId()))
-            throw new WalletServiceValidationException(MessageKey.TRANSACTION_ID_UNIQUENESS, creditOperationRequest.getTransactionId(), creditOperationRequest.getCustomerId());
+            throw new WalletServiceValidationException(MessageKey.TRANSACTION_ID_UNIQUENESS,creditOperationRequest);
 
         return joinPoint.proceed();
     }

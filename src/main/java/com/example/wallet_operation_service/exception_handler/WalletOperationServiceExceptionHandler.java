@@ -1,6 +1,7 @@
 package com.example.wallet_operation_service.exception_handler;
 
 import com.example.wallet_operation_service.constants.Constant;
+import com.example.wallet_operation_service.model.request.TransactionRequest;
 import com.example.wallet_operation_service.model.response.TransactionResponse;
 import com.example.wallet_operation_service.model.response.WalletOperationServiceResponse;
 import lombok.AllArgsConstructor;
@@ -23,14 +24,13 @@ public class WalletOperationServiceExceptionHandler {
 
     @ExceptionHandler(value = WalletServiceValidationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<WalletOperationServiceResponse<String>> walletServiceValidationException(WalletServiceValidationException walletServiceValidationException){
+    public ResponseEntity<WalletOperationServiceResponse<TransactionRequest>> walletServiceValidationException(WalletServiceValidationException walletServiceValidationException){
 
         final String exceptionMessage = MessageKey.messageExtractor(walletServiceValidationException.getLocalizedMessage());
 
-        log.error("Validation exception occurred : " + exceptionMessage + " at time : " + LocalDateTime.now() + " Customer Id: "
-                + walletServiceValidationException.getCustomerId() + " TransactionId : " + walletServiceValidationException.getTransactionId()
-                + "Exception: " + walletServiceValidationException);
+        log.error("Validation exception occurred : " + exceptionMessage + " at time : " + LocalDateTime.now() + " Request : "
+                + walletServiceValidationException.getTransactionRequest() + "Exception: " + walletServiceValidationException);
 
-        return new ResponseEntity<>(new WalletOperationServiceResponse<>(exceptionMessage,Constant.FAILURE),HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new WalletOperationServiceResponse<>(walletServiceValidationException.getTransactionRequest(),exceptionMessage,Constant.FAILURE),HttpStatus.BAD_REQUEST);
     }
 }
