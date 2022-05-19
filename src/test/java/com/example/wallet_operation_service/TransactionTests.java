@@ -1,6 +1,5 @@
 package com.example.wallet_operation_service;
 
-import com.example.wallet_operation_service.entity.Transaction;
 import com.example.wallet_operation_service.entity.TransactionRepository;
 import com.example.wallet_operation_service.entity.Wallet;
 import com.example.wallet_operation_service.entity.WalletRepository;
@@ -12,17 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
-
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 class TransactionTests {

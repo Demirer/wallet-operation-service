@@ -6,8 +6,7 @@ import java.util.ResourceBundle;
 
 public class MessageKey {
 
-    private MessageKey(){
-
+    private MessageKey() {
         throw new IllegalStateException(EXCEPTION_MESSAGE_KEY_ACCESS_ERROR);
     }
 

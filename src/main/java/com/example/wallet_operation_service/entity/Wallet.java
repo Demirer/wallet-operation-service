@@ -24,6 +24,6 @@ public class Wallet {
 
     @Column(name = "TRANSACTION_HISTORY")
     @OrderBy("transactionDateTime")
-    @OneToMany(mappedBy = "customerId",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "customerId", fetch = FetchType.EAGER)
     private List<Transaction> transactionHistory;
 }
