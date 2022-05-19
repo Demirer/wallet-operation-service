@@ -4,6 +4,11 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * This is out wallet entity  Each wallet has ONLY one owner.(customer Id)
+ * We are using ORM and properly fetching all transactions which belongs to wallet with customerId column.
+ * Transaction list always in ordered according to transaction date.
+ */
 @Data
 @Entity
 @Table(name = "WALLET")

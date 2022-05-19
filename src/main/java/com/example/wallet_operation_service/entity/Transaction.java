@@ -7,6 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
+/**
+ * We are processing only transaction in this microservice. Each transaction has transaction id and it is key.
+ * Also, transaction entity has customer id which shows transaction owner customer.
+ * Transactions have two types, Credit OR Withdrawal. We record transaction date time properly as well.
+ */
 @Data
 @Entity
 @Builder
