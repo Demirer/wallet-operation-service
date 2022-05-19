@@ -23,7 +23,7 @@ public class ValidationLayer {
 
     private final TransactionRepository transactionRepository;
 
-    @Around("@annotation(com.example.wallet_operation_service.validator.WithdrawalOperationValidation)")
+    @Around("@annotation(WithdrawalOperationValidation)")
     public Object debitOperationValidation(ProceedingJoinPoint joinPoint) throws Throwable {
         final TransactionRequest debitOperationRequest = (TransactionRequest) getArguments(joinPoint);
 
