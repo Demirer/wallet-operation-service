@@ -25,7 +25,7 @@ public class Wallet {
     private String customerSurname;
 
     @Column(name = "CUSTOMER_BALANCE")
-    private Double balance;
+    private Double customerBalance;
 
     @Column(name = "TRANSACTION_HISTORY")
     @OrderBy("transactionDateTime")
