@@ -37,7 +37,7 @@ public class ValidationLayer {
     @Around("@annotation(WithdrawalOperationValidation)")
     public Object withdrawalOperationValidation(ProceedingJoinPoint joinPoint) throws Throwable {
         final TransactionRequest withdrawalOperationRequest = (TransactionRequest) getArguments(joinPoint);
-        log.info("Withdrawal request: " + withdrawalOperationRequest + LocalDateTime.now());
+        log.info("Withdrawal request: " + withdrawalOperationRequest + " " + LocalDateTime.now());
 
         if (!walletRepository.existsById(withdrawalOperationRequest.getCustomerId()))
             throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST);
@@ -52,7 +52,7 @@ public class ValidationLayer {
     @Around("@annotation(CreditOperationValidation)")
     public Object creditOperationValidation(ProceedingJoinPoint joinPoint) throws Throwable {
         final TransactionRequest creditOperationRequest = (TransactionRequest) getArguments(joinPoint);
-        log.info("Credit request: " + creditOperationRequest + LocalDateTime.now());
+        log.info("Credit request: " + creditOperationRequest + " " + LocalDateTime.now());
 
         if (!walletRepository.existsById(creditOperationRequest.getCustomerId()))
             throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST);
@@ -65,7 +65,7 @@ public class ValidationLayer {
     @Around("@annotation(WalletDetailsValidation)")
     public Object walletDetailsValidation(ProceedingJoinPoint joinPoint) throws Throwable {
         final Long customerId = (Long) getArguments(joinPoint);
-        log.info("Wallet details request: " + customerId + LocalDateTime.now());
+        log.info("Wallet details request: " + customerId + " " +LocalDateTime.now());
 
         if (!walletRepository.existsById(customerId))
             throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST);
