@@ -44,6 +44,5 @@ out/
 
 # mpeltonen/sbt-idea plugin configuration
 .idea_modules/
-
 # Editor-based Rest Client configuration
 .idea/httpRequests
