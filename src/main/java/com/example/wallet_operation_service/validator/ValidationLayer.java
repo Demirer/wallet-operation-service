@@ -75,7 +75,7 @@ public class ValidationLayer {
 
     private boolean checkIfFundsAreSufficient(Long customerId, Double requestAmountToWithdrawal) {
         Optional<Wallet> wallet = walletRepository.findById(customerId);
-        return wallet.filter(value -> value.getBalance() >= requestAmountToWithdrawal).isPresent();
+        return wallet.filter(value -> value.getCustomerBalance() >= requestAmountToWithdrawal).isPresent();
     }
 
     private Object getArguments(ProceedingJoinPoint joinPoint) {
