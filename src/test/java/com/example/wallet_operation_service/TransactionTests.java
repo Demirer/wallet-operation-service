@@ -62,5 +62,4 @@ class TransactionTests {
             Assertions.assertEquals(customerWallet.get().getTransactionHistory().size(),walletDetailResponse.getWallet().getTransactionHistory().size());
         }
     }
-
 }
