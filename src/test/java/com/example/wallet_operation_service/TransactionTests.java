@@ -33,7 +33,7 @@ class TransactionTests {
         if(initialBalanceBeforeWithdrawal.isPresent()){
             TransactionRequest transactionRequest = new TransactionRequest(12462941909113L, 1L, 250.0);
             walletOperationService.withdrawalTransaction(transactionRequest);
-            Assertions.assertEquals(initialBalanceBeforeWithdrawal.get().getBalance() -  250.0, walletOperationService.walletDetails(1L).getWallet().getBalance());
+            Assertions.assertEquals(initialBalanceBeforeWithdrawal.get().getCustomerBalance() -  250.0, walletOperationService.walletDetails(1L).getWallet().getCustomerBalance());
         }
     }
 
@@ -45,7 +45,7 @@ class TransactionTests {
         if(initialBalanceBeforeCredit.isPresent()){
             TransactionRequest transactionRequest = new TransactionRequest(92729419013L, 1L, 500.0);
             walletOperationService.creditTransaction(transactionRequest);
-            Assertions.assertEquals(initialBalanceBeforeCredit.get().getBalance() + 500.0, walletOperationService.walletDetails(1L).getWallet().getBalance());
+            Assertions.assertEquals(initialBalanceBeforeCredit.get().getCustomerBalance() + 500.0, walletOperationService.walletDetails(1L).getWallet().getCustomerBalance());
         }
     }
 
@@ -58,7 +58,7 @@ class TransactionTests {
             Assertions.assertEquals(customerWallet.get().getCustomerId(),walletDetailResponse.getWallet().getCustomerId());
             Assertions.assertEquals(customerWallet.get().getCustomerName(),walletDetailResponse.getWallet().getCustomerName());
             Assertions.assertEquals(customerWallet.get().getCustomerSurname(),walletDetailResponse.getWallet().getCustomerSurname());
-            Assertions.assertEquals(customerWallet.get().getBalance(),walletDetailResponse.getWallet().getBalance());
+            Assertions.assertEquals(customerWallet.get().getCustomerBalance(),walletDetailResponse.getWallet().getCustomerBalance());
             Assertions.assertEquals(customerWallet.get().getTransactionHistory().size(),walletDetailResponse.getWallet().getTransactionHistory().size());
         }
     }
