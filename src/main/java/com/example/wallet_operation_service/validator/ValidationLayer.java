@@ -18,7 +18,7 @@ import java.util.Optional;
 
 /**
  * Validation layer ensure that requests fulfill business and validation requirements. These annotations used in controller layer so if validations
- * not met we are cutting request before enter service layer. We have three annotations implemented in this layer.
+ * not met we are cutting request before enter service layer. We have three annotations implemented in this layer. We are logging every request.
  * These annotations are ;
  * CreditOperationValidation - Checks if customer with given id exists and if given transaction id is unique.
  * WithdrawalOperationValidation - Checks if customer with given id exists, if given transaction id is unique and if there are sufficient balance for withdrawal.
