@@ -42,7 +42,9 @@ Our custom Validation Annotations are;
 **WalletOperationService.java**,  As best practice in microservices each transaction designed as atomic and independent. Simply we have three services;
 
 **walletDetails()**  – Gets customer balance & transaction history.
+
 **withdrawalTransaction()**  – Withdrawal transaction.
+
 **creditTransaction()** – Deposit money transaction.
 
 
