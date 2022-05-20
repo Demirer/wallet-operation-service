@@ -100,6 +100,9 @@ Request Body Example;
 #### IMPORTANT : In resources directory there are data.sql script for initially create 4 customers with 4 deposit operations each of them. In your requests you can use these customer id’s. Initial databse data as below;
 
 “CustomerId: 1”, “Balance : 1000” -> HAS 1 transaction with “transactionId : 1”
+
 “CustomerId: 2”, “Balance : 1000” -> HAS 1 transaction with “transactionId : 2”
+
 “CustomerId: 3”, “Balance : 1000” -> HAS 1 transaction with “transactionId : 3”
+
 “CustomerId: 4”, “Balance : 1000” -> HAS 1 transaction with “transactionId : 4”
