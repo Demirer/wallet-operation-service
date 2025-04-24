@@ -13,6 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Optional;
 
+/**
+ * @author oguzhan.demirer
+ * Integration test for transaction operations.
+ */
 @SpringBootTest
 class TransactionTests {
 
