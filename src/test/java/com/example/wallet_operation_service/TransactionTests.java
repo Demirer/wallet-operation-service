@@ -17,6 +17,8 @@ import java.util.Optional;
  * @author oguzhan.demirer
  * Integration test for transaction operations.
  */
+
+//TODO: Convert some of those tests to Unit tests.
 @SpringBootTest
 class TransactionTests {
 
