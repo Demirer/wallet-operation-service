@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @Table(name = "TRANSACTION")
+// TODO: Review naming conventions.
 public class Transaction {
 
     @Id
