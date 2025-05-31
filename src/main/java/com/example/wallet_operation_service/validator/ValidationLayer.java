@@ -40,11 +40,11 @@ public class ValidationLayer {
         log.info("Withdrawal request: " + withdrawalOperationRequest + " " + LocalDateTime.now());
 
         if (!walletRepository.existsById(withdrawalOperationRequest.getCustomerId()))
-            throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST);
+            throw new WalletServiceValidationException("Customer does not exist.");
         if (transactionRepository.existsById(withdrawalOperationRequest.getTransactionId()))
-            throw new WalletServiceValidationException(MessageKey.TRANSACTION_ID_UNIQUENESS);
+            throw new WalletServiceValidationException("TransactionId is not unique.");
         if (!checkIfFundsAreSufficient(withdrawalOperationRequest.getCustomerId(), withdrawalOperationRequest.getWalletOperationAmount()))
-            throw new WalletServiceValidationException(MessageKey.INSUFFICIENT_FUNDS);
+            throw new WalletServiceValidationException("Insufficient fund.");
 
         return joinPoint.proceed();
     }
