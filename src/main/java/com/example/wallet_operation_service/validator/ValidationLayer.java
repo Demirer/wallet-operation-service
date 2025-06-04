@@ -62,6 +62,7 @@ public class ValidationLayer {
         return joinPoint.proceed();
     }
 
+    //TODO: Remove custom annotations.
     @Around("@annotation(WalletDetailsValidation)")
     public Object walletDetailsValidation(ProceedingJoinPoint joinPoint) throws Throwable {
         final Long customerId = (Long) getArguments(joinPoint);
