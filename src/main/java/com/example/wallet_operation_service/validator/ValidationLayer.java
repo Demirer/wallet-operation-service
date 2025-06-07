@@ -65,7 +65,7 @@ public class ValidationLayer {
     @Around("@annotation(WalletDetailsValidation)")
     public Object walletDetailsValidation(ProceedingJoinPoint joinPoint) throws Throwable {
         final Long customerId = (Long) getArguments(joinPoint);
-        log.info("Wallet details request: " + customerId + " " +LocalDateTime.now());
+        log.debug("Wallet details request: " + customerId + " " +LocalDateTime.now());
 
         if (!walletRepository.existsById(customerId))
             throw new WalletServiceValidationException(MessageKey.CUSTOMER_NOT_EXIST);
