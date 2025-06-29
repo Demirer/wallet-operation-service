@@ -1,8 +1,5 @@
 package com.example.wallet_operation_service.constants;
 
-/**
- * Default Constant class for fulfill best practices in Java. We control all constants in this class.
- */
 public class Constant {
 
     private Constant(){
