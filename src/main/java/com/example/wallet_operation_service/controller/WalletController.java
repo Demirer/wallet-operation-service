@@ -17,12 +17,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-/**
- * This is controller layer of our wallet microservice. As best practice, each service designed atomic and independent.
- * We are our own custom annotations for check business rules and validations. (For example : transaction id must be unique as written in analysis document)
- * System architecture implemented with validation first design, this means that we are directly cutting request which are not valid.
- * We are not allowing them to enter service layer. This provides dramatically load reduce on services for INVALID requests (Both technical & business rules).
- */
 @RestController
 @RequestMapping("wallet/")
 @AllArgsConstructor
