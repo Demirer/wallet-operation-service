@@ -24,12 +24,6 @@ public class WalletController {
 
     private final WalletOperationService walletOperationService;
 
-    @CreditOperationValidation
-    @PostMapping(value = "/credit", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<WalletOperationServiceResponse<TransactionResponse>> creditOperation(@RequestBody @Valid @NotNull TransactionRequest transactionRequest) {
-        return ResponseEntity.ok(new WalletOperationServiceResponse<>(walletOperationService.creditTransaction(transactionRequest), MessageKey.messageExtractor(MessageKey.CREDIT_SUCCESS_MESSAGE), Constant.SUCCESS));
-    }
-
     @WithdrawalOperationValidation
     @PostMapping(value = "/withdrawal", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<WalletOperationServiceResponse<TransactionResponse>> withdrawalOperation(@RequestBody @Valid @NotNull TransactionRequest transactionRequest) {
