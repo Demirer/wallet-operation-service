@@ -11,13 +11,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
-/**
- * This is application service layer. We are performing basic wallet transactions. As best practice in microservices each service
- * designed as atomic and independent. Simply we have three services;
- * walletDetails() - Gets wallet details with customer balance and transaction history.
- * withdrawalTransaction() - Save transaction and update wallet balance for withdrawal.
- * creditTransaction() - Save transaction and update wallet balance for credit.
- */
 @Service
 @AllArgsConstructor
 public class WalletOperationService implements WalletOperation {
