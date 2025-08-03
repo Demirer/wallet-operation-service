@@ -27,13 +27,6 @@ public class WalletOperationService implements WalletOperation {
     }
 
     @Override
-    public TransactionResponse withdrawalTransaction(TransactionRequest transactionRequest) {
-        processTransaction(transactionRequest, Constant.WITHDRAWAL_OPERATION);
-        walletRepository.updateBalance(-transactionRequest.getWalletOperationAmount(),transactionRequest.getCustomerId());
-        return new TransactionResponse(transactionRequest.getTransactionId());
-    }
-
-    @Override
     public TransactionResponse creditTransaction(TransactionRequest transactionRequest) {
         processTransaction(transactionRequest,Constant.CREDIT_OPERATION);
         walletRepository.updateBalance(transactionRequest.getWalletOperationAmount(),transactionRequest.getCustomerId());
